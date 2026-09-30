@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le mie ore</title>
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Le mie ore"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f5f2ea;--bg2:#ebe4d0;--onacc:#fff;--f:Nunito,-apple-system,system-ui,sans-serif;--card:#fffdf8;--ink:#1e2a24;--mute:#6a756e;--line:#e7e1d2;--acc:#2f6f57;--gold:#d9a02f;--track:#e9e4d6;--danger:#b4432f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a17;--bg2:#1a2622;--onacc:#0d1a14;--card:#1c2420;--ink:#eef1ea;--mute:#98a39b;--line:#2b352f;--acc:#57b58f;--gold:#e8b94f;--track:#2b352f;--danger:#e07a66}}
+:root[data-theme="dark"]{--bg:#141a17;--bg2:#1a2622;--onacc:#0d1a14;--card:#1c2420;--ink:#eef1ea;--mute:#98a39b;--line:#2b352f;--acc:#57b58f;--gold:#e8b94f;--track:#2b352f;--danger:#e07a66}
+html{min-height:100%;background:var(--bg)}html,body{margin:0}body{min-height:100vh;color:var(--ink);font:16px/1.4 var(--f);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#app{max-width:480px;margin:0 auto;padding:16px 16px 100px}
+h1,h2,.big{font-family:var(--f)}
+.top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.top h1{margin:0;font-size:26px}.top span{color:var(--mute);font-size:13px}
+.nav{display:flex;align-items:center;justify-content:space-between;margin:4px 0 12px}
+.nav h2{margin:0;font-size:21px}
+.nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:22px}
+.nav button:disabled{opacity:.3}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.hero{display:flex;align-items:center;gap:18px}
+.rw{position:relative;width:132px;height:132px;flex:none}
+.ring{width:100%;height:100%}
+.trk,.bar{fill:none;stroke-width:11}.trk{stroke:var(--track)}
+.bar{stroke:var(--acc);stroke-linecap:round;transition:stroke-dashoffset .5s}.bar.over{stroke:var(--gold)}
+.ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big{font-size:30px;font-weight:700;line-height:1}.ctr small{color:var(--mute);font-size:12px;margin-top:4px}
+.st{font-size:17px}.st b{font-family:var(--f);font-size:24px;display:block}
+.st.ok b{color:var(--gold)}
+.lbl{font-size:13px;color:var(--mute);margin:0 0 6px;display:block}
+input,select{width:100%;box-sizing:border-box;min-height:46px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.chips{display:flex;gap:8px;margin-bottom:12px}
+.chips button{flex:1;padding:9px 0;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+.go{width:100%;padding:14px;border:0;border-radius:14px;background:var(--acc);color:var(--onacc,#fff);font:inherit;font-weight:600;font-size:17px;min-height:48px}
+.msg{color:var(--danger);font-size:14px;min-height:18px;margin:8px 0 0}
+.li{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line)}
+.li:first-of-type{border-top:0}
+.li .d{text-transform:capitalize}.li .h{font-family:var(--f);font-weight:700;margin-right:12px}
+.li button{border:1px solid var(--line);background:none;color:var(--mute);border-radius:10px;padding:6px 10px;font:inherit}
+.li button.del{background:var(--danger);border-color:var(--danger);color:#fff}
+.empty{color:var(--mute);text-align:center;padding:12px 0}
+.mr{display:grid;grid-template-columns:84px 1fr 96px;gap:10px;align-items:center;padding:9px 0;width:100%;background:none;border:0;color:var(--ink);font:inherit;text-align:left}
+.mr.cur .n{font-weight:700}
+.tr{height:14px;border-radius:9px;background:var(--track);overflow:hidden}
+.tr i{display:block;height:100%;background:var(--acc);border-radius:9px}.tr i.full{background:var(--gold)}
+.mr .v{text-align:right;font-variant-numeric:tabular-nums;font-size:13px}
+.card.hero{background:linear-gradient(140deg,var(--card),var(--track))}.ac{display:flex;align-items:center;gap:6px}.nt{display:block;color:var(--mute);font-size:13px}.go.cx{background:none;border:1px solid var(--line);color:var(--mute);margin-top:8px}
+input,select{min-width:0;max-width:100%}input[type=date]{-webkit-appearance:none;appearance:none;display:block;text-align:left}input[type=date]::-webkit-date-and-time-value{text-align:left}
+@keyframes slR{from{opacity:0;transform:translateX(34px)}}@keyframes slL{from{opacity:0;transform:translateX(-34px)}}@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}@keyframes ring{from{stroke-dashoffset:var(--c)}}@keyframes grow{from{width:0}}@keyframes bump{40%{transform:scale(1.035)}}@keyframes pop{0%{opacity:0;transform:translateY(-10px) scale(.96)}60%{opacity:1;transform:scale(1.02)}}@keyframes gear{from{transform:rotate(-240deg) scale(.5)}60%{transform:rotate(20deg) scale(1.25)}}@keyframes toast{0%{opacity:0;transform:translate(-50%,-16px)}12%{opacity:1;transform:translate(-50%,0)}82%{opacity:1}100%{opacity:0}}
+#app.r .pg{animation:slR .38s cubic-bezier(.2,.8,.2,1)}#app.l .pg{animation:slL .38s cubic-bezier(.2,.8,.2,1)}#app.t .pg{animation:fadeUp .4s cubic-bezier(.2,.8,.2,1)}#app.f .bar{animation:ring 1s cubic-bezier(.2,.8,.2,1)}#app.f .tr i{animation:grow .8s cubic-bezier(.2,.8,.2,1)}#app.a .hero{animation:bump .5s}.li.new{animation:pop .6s cubic-bezier(.2,.8,.2,1)}
+.ic span{display:inline-block;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}.ic:active span{transform:rotate(90deg) scale(.9)}.ic.spin span{animation:gear .8s cubic-bezier(.2,.8,.2,1)}button{transition:transform .12s,background .25s}button:active{transform:scale(.96)}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:9;pointer-events:none;background:var(--acc);color:var(--onacc,#fff);padding:10px 18px;border-radius:999px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.25);animation:toast 2.4s forwards}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.tabs button.ic{flex:0 0 56px;font-size:20px;padding:9px 0}.chip{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;margin:0 0 12px}.tg{grid-column:1/-1;font-size:12px;color:var(--mute);margin:-6px 0 2px}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.sw2{grid-template-columns:repeat(2,1fr)}.swb{padding:8px 4px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:13px}.swb.on{border-color:var(--acc)}.swb i{display:block;width:34px;height:34px;border-radius:50%;margin:0 auto 4px;border:1px solid var(--line)}
+.note{color:var(--mute);font-size:14px;margin:12px 0 0}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;justify-content:center;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
+.tabs button{flex:1;max-width:180px;padding:12px 4px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--mute);font:inherit;font-weight:600}
+.tabs button.on{background:var(--acc);border-color:var(--acc);color:var(--onacc,#fff)}
+</style></head><body>
+<div id="app"></div>
+<script>
+let GM=50,GY=600;const MN=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+const pad=n=>String(n).padStart(2,'0'),now=new Date();
+const todayIso=${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())};
+const S=now.getMonth()>=8?now.getFullYear():now.getFullYear()-1;
+const months=[...Array(12)].map((_,i)=>{const m=(8+i)%12,y=S+(8+i>=12?1:0);return{key:${y}-${pad(m+1)},name:MN[m],y,c:m}});
+const mm=n=>Math.round(n*60),fmt=n=>{const t=mm(n),h=Math.floor(t/60),m=t%60;return m?${h} h ${m} min:${h} h},big=n=>{const t=mm(n),h=Math.floor(t/60),m=t%60;return m?${h}:${pad(m)}:${h}};
+const dim=k=>new Date(+k.slice(0,4),+k.slice(5),0).getDate();
+const sum=k=>entries.reduce((t,e)=>e.d.startsWith(k)?t+e.h:t,0);
+let entries=[],sel=months.findIndex(m=>m.key===todayIso.slice(0,7)),tab='mese',conf=null,dD=todayIso,dHh=1,dMi=0,dN='',editId=null,msg='',imsg='',tmSel=now.getMonth(),fx='',newId=null,toast='';
+let pref={th:'auto',bg:'solid',f:'nunito'},tags={2:'🕊️ Campagna Commemorazione',3:'🕊️ Campagna Commemorazione'};
+function fixD(){const k=months[sel].key;if(!dD.startsWith(k))dD=todayIso.startsWith(k)?todayIso:k+'-01'}
+const LS='ore-v1';let ref=null;
+try{load(JSON.parse(localStorage.getItem(LS)))}catch(e){}
+const pack=()=>({entries,goals:{m:GM,y:GY},pref,tags}),ESC={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'},esc=s=>String(s).replace(/[&<>"']/g,c=>ESC[c]);
+function save(){try{localStorage.setItem(LS,JSON.stringify(pack()))}catch(e){}if(ref)ref.set(pack()).catch(()=>{})}
+function load(o){entries=o.entries||[];if(o.goals){GM=o.goals.m||50;GY=o.goals.y||600}if(o.pref)Object.assign(pref,o.pref);if(o.tags)tags=o.tags}
+const ME=['⛄','💝','🌷','🐣','🌸','☀️','🏖️','🌻','🍂','🎃','🍁','🎄'],VR=['--bg','--bg2','--card','--ink','--mute','--line','--acc','--gold','--track'];
+const TH={crema:['Crema','#f5f2ea','#ebe4d0','#fffdf8','#1e2a24','#6a756e','#e7e1d2','#2f6f57','#d9a02f','#e9e4d6',0],oceano:['Oceano','#eaf3f8','#d3e8f3','#ffffff','#12303f','#5d7684','#d3e3ec','#1b7fa8','#e0a030','#dbe9f0',0],rosa:['Rosa','#fbf0f1','#f6dade','#fffafa','#3a2228','#8a6a72','#f0d9dd','#c2506b','#d9a02f','#f3e0e3',0],notte:['Notte','#101615','#1a2622','#1c2420','#eef1ea','#98a39b','#2b352f','#57b58f','#e8b94f','#2b352f',1],mezzanotte:['Mezzanotte','#12111f','#22204a','#1b1930','#ecebf7','#9a97b8','#2c2949','#8f7cf0','#f0c05a','#2c2949',1]};
+const FO=[['sistema','Sistema','-apple-system,BlinkMacSystemFont,system-ui,sans-serif',''],['nunito','Nunito',"Nunito,-apple-system,sans-serif",'Nunito'],['poppins','Poppins',"Poppins,-apple-system,sans-serif",'Poppins'],['quicksand','Quicksand',"Quicksand,-apple-system,sans-serif",'Quicksand'],['lora','Lora',"Lora,Georgia,serif",'Lora'],['playfair','Playfair',"'Playfair Display',Georgia,serif",'Playfair+Display'],['mono','Space Mono',"'Space Mono',ui-monospace,monospace",'Space+Mono']];
+function loadFont(f){if(!f[3]||document.getElementById('f-'+f[0]))return;const l=document.createElement('link');l.id='f-'+f[0];l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+f[3]+':wght@400;700&display=swap';document.head.appendChild(l)}
+function applyPref(){const r=document.documentElement,t=TH[pref.th],f=FO.find(x=>x[0]===pref.f)||FO[1];
+VR.forEach((v,i)=>t?r.style.setProperty(v,t[i+1]):r.style.removeProperty(v));
+if(t){r.style.setProperty('--onacc',t[10]?'#0d1a14':'#fff');r.style.colorScheme=t[10]?'dark':'light'}else{r.style.removeProperty('--onacc');r.style.colorScheme=''}
+r.style.setProperty('--f',f[2]);loadFont(f);r.style.backgroundColor='var(--bg)';r.style.backgroundRepeat='no-repeat';r.style.backgroundImage=pref.bg==='grad'?'linear-gradient(165deg,var(--bg),var(--bg2))':'none'}
+function pace(k,v){if(!todayIso.startsWith(k)||v>=GM)return'';const left=dim(k)-now.getDate()+1;if((GM-v)/left>24)return'';return`<p class="note" style="margin:-4px 4px 14px">Servono circa ${fmt((GM-v)/left)} al giorno per arrivare a ${GM} h.</p>`}
+async function exportCsv(){try{const dl=typeof claude!=='undefined'&&await claude.use('downloads');if(!dl){imsg='Il download non è disponibile qui';return render()}const rows=[...entries].sort((a,b)=>a.d.localeCompare(b.d)).map(e=>{const t=mm(e.h);return[e.d,Math.floor(t/60),t%60,'"'+(e.n||'').replace(/"/g,'""')+'"'].join(';')});await dl.save({filename:'le-mie-ore.csv',data:'\ufeff'+['data;ore;minuti;nota',...rows].join('\n')});imsg='✓ File pronto'}catch(e){imsg=e&&e.code==='declined'?'':'Non è stato possibile scaricare il file'}render()}
+async function initDb(){try{if(typeof claude==='undefined')return;const db=await claude.use('db'),u=await claude.use('user');if(!db||!u)return;const id=await u.id();if(!id)return;const r=db.doc(data/users/${id}/ore),s=await r.get();if(s.exists){load(s.data());try{localStorage.setItem(LS,JSON.stringify(pack()))}catch(e){}}else if(entries.length)await r.set(pack());ref=r;applyPref();render()}catch(e){}}
+function ring(v,g){const C=2*Math.PI*54,p=Math.min(v/g,1);return`<svg class="ring" viewBox="0 0 128 128"><circle class="trk" cx="64" cy="64" r="54"/><circle class="bar${v>g?' over':''}" cx="64" cy="64" r="54" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-p)}" transform="rotate(-90 64 64)" style="--c:${C}"/></svg>`}
+function hero(v,g,unit){const r=g-v;return`<div class="card hero"><div class="rw">${ring(v,g)}<div class="ctr"><span class="big">${big(v)}</span><small>di ${g} h</small></div></div><div class="st ${r<=0?'ok':''}">${r>0?Mancano<b>${fmt(r)}</b>${unit}:Obiettivo raggiunto 🎉<b>+${fmt(-r)}</b>in più}</div></div>`}
+function dfmt(d){const[y,m,x]=d.split('-');return new Date(y,m-1,x).toLocaleDateString('it-IT',{weekday:'short',day:'numeric',month:'short'})}
+function render(){
+const a=document.getElementById('app'),F=fx,NI=newId,TT=toast;fx='';newId=null;toast='';let h=<div class="top"><h1>Le mie ore</h1><span>Sett ${S} – Ago ${S+1}</span></div><div class="pg">;
+if(tab==='mese'){fixD();const m=months[sel],v=sum(m.key),list=entries.filter(e=>e.d.startsWith(m.key)).sort((x,y)=>y.d.localeCompare(x.d)||y.id.localeCompare(x.id));
+h+=<div class="nav"><button data-n="-1" ${sel===0?'disabled':''}>‹</button><h2>${ME[m.c]} ${m.name} ${m.y}</h2><button data-n="1" ${sel===11?'disabled':''}>›</button></div>${tags[m.c]?<div style="text-align:center"><span class="chip">${esc(tags[m.c])}</span></div>`:''}${hero(v,GM,'per arrivare a '+GM)}${pace(m.key,v)}
+<div class="card"><label class="lbl">${editId?'Modifica inserimento':'Giorno'}</label><input id="d" type="date" value="${dD}" min="${m.key}-01" max="${m.key}-${dim(m.key)}" style="margin-bottom:10px"><div class="row2"><div><label class="lbl">Ore</label><select id="hh">${[...Array(25)].map((_,i)=><option ${i===dHh?'selected':''}>${i}</option>).join('')}</select></div><div><label class="lbl">Minuti</label><select id="mi">${[0,15,30,45].map(i=><option ${i===dMi?'selected':''}>${i}</option>).join('')}</select></div></div><label class="lbl">Nota (facoltativa)</label><input id="nt" type="text" maxlength="80" placeholder="Un promemoria, se ti serve" value="${esc(dN)}" style="margin-bottom:12px"><button class="go" id="add">${editId?'Salva modifiche':'Aggiungi ore'}</button>${editId?'<button class="go cx" id="cx">Annulla</button>':''}<p class="msg">${msg}</p></div>
+<div class="card"><label class="lbl">Ore inserite</label>${list.length?list.map(e=><div class="li${e.id===NI?' new':''}"><span><span class="d">${dfmt(e.d)}</span>${e.n?<small class="nt">${esc(e.n)}</small>:''}</span><span class="ac"><span class="h">${fmt(e.h)}</span>${conf===e.id?<button class="del" data-x="${e.id}">Elimina</button><button data-k="1">Annulla</button>:<button data-e="${e.id}" aria-label="Modifica">✎</button><button data-x="${e.id}" aria-label="Elimina">✕</button>}</span></div>).join(''):'<div class="empty">Ancora nessuna ora questo mese</div>'}</div>`}
+else if(tab==='anno'){const tot=entries.filter(e=>e.d>=months[0].key+'-01'&&e.d<=${S+1}-08-31).reduce((t,e)=>t+e.h,0),cur=todayIso.slice(0,7),left=months.filter(m=>m.key>=cur).length,r=GY-tot;
+h+=<div class="nav"><h2>Riepilogo annuale</h2></div>${hero(tot,GY,'a fine anno')}<div class="card"><p class="note" style="margin:0 0 6px">Mesi da ${GM} h completati: ${months.filter(m=>sum(m.key)>=GM).length} su 12</p>${months.map((m,i)=>{const v=sum(m.key);return<button class="mr ${m.key===cur?'cur':''}" data-m="${i}"><span class="n">${ME[m.c]} ${m.name.slice(0,3)}</span><span class="tr"><i class="${v>=GM?'full':''}" style="width:${Math.min(v/GM,1)*100}%"></i></span><span class="v">${fmt(v)}${v>=GM?' ✓':''}</span>${tags[m.c]?<small class="tg">${esc(tags[m.c])}</small>:''}</button>}).join('')}${r>0&&left>0?<p class="note">Per arrivare a ${GY} servono circa ${fmt(r/left)} al mese nei ${left} mesi rimasti.</p>:''}</div>}
+else{FO.forEach(loadFont);h+=<div class="nav"><h2>⚙️ Impostazioni</h2></div>${imsg?<p class="msg" style="margin:0 0 10px;color:${imsg[0]==='✓'?'var(--acc)':'var(--danger)'}">${imsg}</p>:''}<div class="card"><label class="lbl">Tema</label><div class="sw">${[['auto','Auto'],...Object.entries(TH).map(([k,t])=>[k,t[0]])].map(([k,n])=><button class="swb ${pref.th===k?'on':''}" data-th="${k}"><i style="background:linear-gradient(135deg,${k==='auto'?'#f5f2ea 50%,#141a17 50%':TH[k][1]+' 50%,'+TH[k][7]+' 50%'})"></i>${n}</button>).join('')}</div><label class="lbl">Sfondo</label><div class="sw sw2">${[['solid','Tinta unita'],['grad','Sfumatura']].map(([k,n])=><button class="swb ${pref.bg===k?'on':''}" data-bg="${k}">${n}</button>).join('')}</div><label class="lbl">Carattere (anche per i numeri)</label><div class="sw sw2" style="margin-bottom:0">${FO.map(f=><button class="swb ${pref.f===f[0]?'on':''}" data-f="${f[0]}" style="font-family:${f[2]};font-size:17px">Aa 0123<br><small>${f[1]}</small></button>`).join('')}</div></div>
+<div class="card"><label class="lbl">Promemoria del mese</label><select id="tm" style="margin-bottom:10px">${MN.map((n,i)=><option value="${i}" ${i===tmSel?'selected':''}>${ME[i]} ${n}</option>).join('')}</select><input id="tt" type="text" maxlength="40" placeholder="es. 🕊️ Campagna" value="${esc(tags[tmSel]||'')}" style="margin-bottom:12px"><button class="go" id="st">Salva promemoria</button><p class="note">Lascia vuoto il campo per toglierlo. Compare ogni anno in quel mese.</p></div>
+<div class="card"><label class="lbl">Obiettivo ore al mese</label><input id="gm" type="number" inputmode="numeric" min="1" max="744" value="${GM}" style="margin-bottom:10px"><label class="lbl">Obiettivo ore all'anno</label><input id="gy" type="number" inputmode="numeric" min="1" max="8760" value="${GY}" style="margin-bottom:12px"><button class="go" id="sg">Salva obiettivi</button></div><div class="card"><label class="lbl">Backup</label><p class="note" style="margin:0 0 12px">Scarica tutte le ore inserite in un file CSV, da aprire con Excel o Fogli.</p><button class="go" id="ex">Scarica le mie ore</button></div>`}
+h+='</div>'+(TT?<div class="toast">${esc(TT)}</div>:'');
+h+=<div class="tabs"><button class="${tab==='mese'?'on':''}" data-t="mese">Mese</button><button class="${tab==='anno'?'on':''}" data-t="anno">Anno</button><button class="ic ${tab==='imp'?'on':''} ${F==='t'&&tab==='imp'?'spin':''}" data-t="imp" aria-label="Impostazioni"><span>⚙️</span></button></div>;
+a.innerHTML=h;a.className=F?'f '+F:'';const g=s=>a.querySelectorAll(s);
+g('[data-t]').forEach(b=>b.onclick=()=>{fx=tab!==b.dataset.t?'t':'';tab=b.dataset.t;conf=null;msg='';imsg='';editId=null;dN='';render()});
+g('[data-n]').forEach(b=>b.onclick=()=>{fx=+b.dataset.n>0?'r':'l';sel+=+b.dataset.n;conf=null;editId=null;dN='';render()});
+g('[data-m]').forEach(b=>b.onclick=()=>{fx='t';sel=+b.dataset.m;tab='mese';render()});
+g('[data-x]').forEach(b=>b.onclick=()=>{const id=b.dataset.x;if(conf===id){entries=entries.filter(e=>e.id!==id);conf=null;save()}else conf=id;render()});
+g('[data-k]').forEach(b=>b.onclick=()=>{conf=null;render()});
+g('[data-e]').forEach(b=>b.onclick=()=>{const e=entries.find(x=>x.id===b.dataset.e);if(!e)return;editId=e.id;dD=e.d;const t=mm(e.h),r=t%60;dHh=Math.floor(t/60);dMi=[0,15,30,45].reduce((p,c)=>Math.abs(c-r)<Math.abs(p-r)?c:p,0);dN=e.n||'';conf=null;msg='';render();window.scrollTo(0,0)});
+g('[data-th]').forEach(b=>b.onclick=()=>{pref.th=b.dataset.th;save();applyPref();render()});
+g('[data-bg]').forEach(b=>b.onclick=()=>{pref.bg=b.dataset.bg;save();applyPref();render()});
+g('[data-f]').forEach(b=>b.onclick=()=>{pref.f=b.dataset.f;save();applyPref();render()});
+const tm=a.querySelector('#tm');if(tm){tm.onchange=()=>{tmSel=+tm.value;imsg='';render()};a.querySelector('#st').onclick=()=>{const v=a.querySelector('#tt').value.trim();if(v)tags[tmSel]=v;else delete tags[tmSel];save();imsg='✓ Promemoria salvato';render()}}
+const sg=a.querySelector('#sg');if(sg){sg.onclick=()=>{const m=+a.querySelector('#gm').value,y=+a.querySelector('#gy').value;if(!(m>=1&&m<=744&&y>=1&&y<=8760)){imsg='Inserisci obiettivi validi';return render()}GM=Math.round(m);GY=Math.round(y);save();imsg='✓ Obiettivi salvati';render()};a.querySelector('#ex').onclick=exportCsv}
+const d=a.querySelector('#d'),hs=a.querySelector('#hh'),ms=a.querySelector('#mi'),nt=a.querySelector('#nt'),cx=a.querySelector('#cx');
+if(cx)cx.onclick=()=>{editId=null;dN='';msg='';render()};
+if(d){d.oninput=()=>dD=d.value;hs.onchange=()=>dHh=+hs.value;ms.onchange=()=>dMi=+ms.value;nt.oninput=()=>dN=nt.value;a.querySelector('#add').onclick=()=>{const n=+hs.value+ +ms.value/60,k=months[sel].key,note=nt.value.trim(),before=sum(k);
+if(!d.value||!d.value.startsWith(k)){msg='Scegli un giorno di questo mese';return render()}
+if(!(n>0&&n<=24)){msg='Scegli ore e minuti (massimo 24 ore)';return render()}
+const e=editId&&entries.find(x=>x.id===editId);
+if(e){e.d=d.value;e.h=n;e.n=note}else entries.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),d:d.value,h:n,n:note});
+newId=e?e.id:entries[entries.length-1].id;toast=e?'✓ Modifica salvata':(before<GM&&sum(k)>=GM?'🎉 Obiettivo del mese raggiunto!':'✓ Aggiunte '+fmt(n));fx='a';editId=null;dN='';msg='';save();render()}}}
+applyPref();render();initDb();
+{let x0=0,y0=0;const A=document.getElementById('app');A.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});A.addEventListener('touchend',e=>{if(tab!=='mese')return;const t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0,n=dx<0?1:-1;if(Math.abs(dx)>80&&Math.abs(dy)<40&&sel+n>=0&&sel+n<12&&!/INPUT|SELECT/.test(e.target.tagName)){sel+=n;conf=null;editId=null;dN='';fx=n>0?'r':'l';render()}},{passive:true})}
+</script></body></html>
